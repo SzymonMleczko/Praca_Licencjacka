@@ -163,7 +163,7 @@ def calculete():
 		tax = 10800+(readDBU('127')-120000)*0.32
 		update('130',tax)
 	else:
-		tax = readDBU('127')*0.12-30000
+		tax = readDBU('127')*0.12-3600
 		
 		if tax < 0:
 			tax = 0
