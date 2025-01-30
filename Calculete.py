@@ -14,13 +14,13 @@ class WindowCalculate(QWidget):
 
 
 		calculete()
-		self.cratingTables()
+		self.creatingTables()
 		self.show()
 		self.setGeometry(900, 950, 900, 950)
 		self.setWindowTitle("Wyliczone wartości")
 		self.show()
 
-	def cratingTables(self):
+	def creatingTables(self):
 
 		data=readall()
 		n=0
