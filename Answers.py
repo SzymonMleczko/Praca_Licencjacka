@@ -169,7 +169,7 @@ class WindowAnswer(QWidget):
 
                 if mari == 1:
                     if textboxValue1.isnumeric():
-                        if x in range(52-86):
+                        if x in range(52,86):
                             update(str(x+35),textboxValue1)
                         else:
                             update(str(x+1),textboxValue1)                       

@@ -155,20 +155,20 @@ def calculete():
 	update('127',limit+mlimit-readDBU('124')-readDBU('125')-readDBU('126'))
 	if readDBU('128') > readDBU('127'):
 		update('128', readDBU('127'))
-	if readDBU('1') or readDBU('9') or readDBU('10'):
+	if readDBU('2') or (readDBU('15') and not readDBU('2')) or readDBU('16'):
 		update('129',round((readDBU('127')-readDBU('128'))/2))
 	else:
 		update('129',round(readDBU('127')-readDBU('128')))
-	if readDBU(129) > 120000:
-		tax = 10800+(readDBU('127')-120000)*0.32
-		update('130',tax)
+	if readDBU('129') > 120000:
+		tax = 10800+(readDBU('129')-120000)*0.32
+		update('130',round(tax,2))
 	else:
-		tax = readDBU('127')*0.12-3600
+		tax = readDBU('129')*0.12-3600
 		
 		if tax < 0:
 			tax = 0
-		update('130',tax)
-	if readDBU('1') or readDBU('9') or readDBU('10'):
+		update('130',round(tax,2))
+	if readDBU('2') or (readDBU('15') and not readDBU('2')) or readDBU('16'):
 		update('130',readDBU('130')*2)
 	
 	tax = readDBU('130')+readDBU('132')
@@ -188,8 +188,9 @@ def calculete():
 		update('138',readDBU('137')-readDBU('86')-readDBU('121'))
 	else:
 		update('139',-(readDBU('137')-readDBU('86')-readDBU('121')))
-	update('140',readDBU('140')+readDBU('122'))
-	update('141',readDBU('141')+readDBU('123'))
+	if readDBU('15'):
+		update('140',readDBU('140')+readDBU('122'))
+		update('141',readDBU('141')+readDBU('123'))
 	if readDBU('142')+readDBU('143') > readDBU('140')+readDBU('141'):
 		update('144',readDBU('140')+readDBU('141'))
 	else:

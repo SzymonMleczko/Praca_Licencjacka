@@ -20,11 +20,11 @@ def restart():
 		id INTEGER PRIMARY KEY ASC,
 		name varchar(50) NOT NULL,
 		value float(250) NOT NULL,
-		showname varchar(250) not Null
+		showname varchar(250) NOT Null
 		)""")
 
 	record = (
-		(None, 'current',1, 'Aktualna Pozycja w PIT'),
+		(None,'current',1, 'Aktualna Pozycja w PIT'),
 		(None,'1',0,'Płeć'),
 		(None,'2',0, 'Rozliczenie z małżonkiem'),
 		(None,'3',0,'Wiek'),
@@ -77,7 +77,7 @@ def restart():
 		(None,'63',0,'Koszty uzyskania przychodu działalność wykonywana osobiście opodatkowanie zgodnie z kosztami'),
 		(None,'64',0,'Dochód działalność wykonywana osobiście'),
 		(None,'65',0,'Strata działalność wykonywana osobiście'),
-		(None,'66',0,'Zaliczki na podatek z pracydziałalność wykonywana osobiście '),
+		(None,'66',0,'Zaliczki na podatek z działalność wykonywana osobiście '),
 		(None,'67',0,'Przychody działalność wykonywana osobiście na zlecenie lub umowe o dzieło'),
 		(None,'68',0,'Koszty uzyskania przychodu działalność wykonywana osobiście na umowe zlecenie lub umowe o dzieło'),
 		(None,'69',0,'Przychody z praw autorskich opodatkowanie zgodnie z kosztami'),
@@ -113,7 +113,7 @@ def restart():
 		(None,'98',0,'Koszty uzyskania przychodu działalność wykonywana osobiście opodatkowanie zgodnie z kosztami małżonka'),
 		(None,'99',0,'Dochód działalność wykonywana osobiście małżonka'),
 		(None,'100',0,'Strata działalność wykonywana osobiście małżonka'),
-		(None,'101',0,'Zaliczki na podatek z pracydziałalność wykonywana osobiście małżonka'),
+		(None,'101',0,'Zaliczki na podatek z działalność wykonywana osobiście małżonka'),
 		(None,'102',0,'Przychody działalność wykonywana osobiście opodatkowanie 50% małżonka'),
 		(None,'103',0,'Koszty uzyskania przychodu działalność wykonywana osobiście 50% małżonka'),
 		(None,'104',0,'Przychody z praw autorskich opodatkowanie zgodnie z kosztami małżonka'),
@@ -256,7 +256,15 @@ def benefit():
 	gender = readDBU('2')
 	age = readDBU('3')
 	mage = readDBU('4')
-	
+	if age < 27 or (mage < 27 and mage != 0):
+		if readDBU('34'):
+			update('34',0)
+		elif age < 27:
+			update('34',1)
+		if readDBU('35'):
+			update('35',0)
+		elif (mage < 27 and mage != 0):
+			update('35',1)
 	if gender:
 		if age > 64:
 			if readDBU('40'):

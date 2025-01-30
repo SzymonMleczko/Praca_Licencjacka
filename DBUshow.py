@@ -36,7 +36,7 @@ class WindowDBshow(QWidget):
 		table = QTableWidget()
 		table.setColumnCount(2)
 		table.setRowCount(n)
-		table.setColumnWidth(0,300)
+		table.setColumnWidth(0,600)
 		table.setColumnWidth(1,100)
 		table.move(700,700)
 

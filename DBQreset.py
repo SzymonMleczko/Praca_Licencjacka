@@ -33,7 +33,7 @@ def restart():
     record = (
         (None,999,'Proszę wcisnoć przycisk Wprowadzone wartości','N'),
 
-        (None,0,'Proszę zaznaczyć tak jeśli podatnik jest mężczyzną','B'),
+        (None,1,'Proszę zaznaczyć tak jeśli podatnik jest mężczyzną','B'),
         (None,2,'Czy rozliczenie wspólnie z Żoną/Mężem? ','B'),
         (None,3,'Podaj wiek','N'),
         (None,5,'Czy pracujesz na Etacie?','B'),
@@ -52,7 +52,7 @@ def restart():
         (None,53,'Koszty z pracy na Etacie opodatkowanie zgodnie z kosztami','N'),
         (None,56,'Zaliczka pobrana przez płatnika z pracy na Etacie','N'),
         (None,57,'Przychody z pracy na Etacie do których stosowana jest stawka 50% maksymalnie 120000','N'),
-        (None,58,'Przychody z pracy na Etacie do których stosowana jest stawka 50% maksymalnie 120000','N'),
+        (None,58,'Kosszty pracy na Etacie do których stosowana jest stawka 50% maksymalnie 120000','N'),
         (None,59,'Przychody z Emerytury/renty/ inne krajowe świadczenia','N'),
         (None,61,'Zaliczka pobrana przez płatnika z Emerytury/renty/ inne krajowe świadczenia','N'),
         (None,62,'Przychody z działalności wykonywanej osobiście(art. 13 pkt 8 ustawy o podatku od osób fizycznych)','N'),
