@@ -8,8 +8,9 @@ from Calculete import WindowCalculate
 
 class WindowDBshow(QWidget):
 
-	def __init__(self):
+	def __init__(self,user):
 		super().__init__()
+		self.user = user
 
 		self.initUI()
 
@@ -22,9 +23,9 @@ class WindowDBshow(QWidget):
 
 		self.show()
 
-	def cratingTables(self):
+	def creatingTables(self):
 
-		data=readall()
+		data=readall(self.user)
 		n=1
 		for rec in data:
 			if rec['value'] != 0:
@@ -59,7 +60,8 @@ class WindowDBshow(QWidget):
 		
 
 	def on_click_calculate(self):
-		self.w = WindowCalculate()
+		self.w = WindowCalculate(self.user)
+		self.w.user = self.user
 		self.w.show()
 
     

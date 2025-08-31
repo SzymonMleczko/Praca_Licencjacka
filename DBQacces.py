@@ -15,7 +15,7 @@ def read(number):
     """Funkcja pobiera i wyświetla dane z bazy."""
     
     cur.execute("""
-        SELECT * FROM questions WHERE number=? """,[number])
+        SELECT * FROM q2024 WHERE number=? """,[number])
     record = cur.fetchall()
     return record[0]
 

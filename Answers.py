@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import *
-
 from DBQacces import read
 from DBUacces import readDBU,update,current,next,prev
 
@@ -8,13 +7,14 @@ from DBUshow import WindowDBshow
 
 class WindowAnswer(QWidget):
 
-    def __init__(self):
+    def __init__(self,user):
         super().__init__()
+        self.user=user
 
         self.initUI()
 
     def initUI(self):
-        x=current()
+        x=current(self.user)
 
         record = read(x)
 
@@ -84,21 +84,21 @@ class WindowAnswer(QWidget):
 
         self.show()
         self.setGeometry(500, 550, 800, 550)
-        self.setWindowTitle("Zapytania")
+        self.setWindowTitle("Zapytania "+self.user)
         self.show()
         if x != 1:
-            update('current',prev(x))
+            update('current',prev(x),self.user)
             self.on_click_next()
     
     def on_click_next(self):
 
-        x=next(current())
-        update('current',x)
+        x=next(current(self.user))
+        update('current',x,self.user)
 
-        record=read(x)
+        record=read(x,self.user)
        
         self.label.setText(record['question'])
-        mar = readDBU('2')
+        mar = readDBU('2',self.user)
         if mar == 1:
             if record['type'] == 'B':
                 self.yescheckbox1.show()
@@ -135,10 +135,10 @@ class WindowAnswer(QWidget):
         
     
     def on_click_ready(self):
-        x=int(current())
-        mari = readDBU('2')
+        x=int(current(self.user))
+        mari = readDBU('2',self.user)
 
-        record = read(x)
+        record = read(x,self.user)
         
         textboxValue = self.textbox.text()
         textboxValue1= self.textbox1.text()
@@ -146,33 +146,33 @@ class WindowAnswer(QWidget):
             if self.yescheckbox.isChecked():
 
                 if self.yescheckbox1.isChecked():
-                    update(str(x),1)
-                    update(str(x+1),1)
+                    update(str(x),1,self.user)
+                    update(str(x+1),1,self.user)
                      
                 else:   
-                    update(str(x),1)
-                    update(str(x+1),0)
+                    update(str(x),1,self.user)
+                    update(str(x+1),0,self.user)
 
             else:
                 if self.yescheckbox1.isChecked() :
-                    update(str(x),0)
-                    update(str(x+1),1)
+                    update(str(x),0,self.user)
+                    update(str(x+1),1,self.user)
                      
                 else:   
-                    update(str(x),0)
-                    update(str(x+1),0)
+                    update(str(x),0,self.user)
+                    update(str(x+1),0,self.user)
             self.on_click_next()
         else:
             if textboxValue.isnumeric():
                 
-                update(str(x),textboxValue)
+                update(str(x),textboxValue,self.user)
 
                 if mari == 1:
                     if textboxValue1.isnumeric():
                         if x in range(52,86):
-                            update(str(x+35),textboxValue1)
+                            update(str(x+35),textboxValue1,self.user)
                         else:
-                            update(str(x+1),textboxValue1)                       
+                            update(str(x+1),textboxValue1,self.user)                       
                     else:
                         QMessageBox.question(self, 'Message ', "Nie poprawna wartość dla małżonki: " + textboxValue1, QMessageBox.Ok, QMessageBox.Ok)
 
@@ -186,12 +186,13 @@ class WindowAnswer(QWidget):
         
     
     def on_click_DBUshow(self):
-        self.w = WindowDBshow()
+        self.w = WindowDBshow(self.user)
+        self.w.user = self.user
         self.w.show()
     
     def on_click_prev(self):
-        x = prev(prev(current()))
-        update('current',x)
+        x = prev(prev(current(self.user)))
+        update('current',x,self.user)
         self.on_click_next()
 
 
