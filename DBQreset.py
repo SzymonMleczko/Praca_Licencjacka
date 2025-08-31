@@ -23,7 +23,7 @@ def restart():
             number int(50) NOT NULL,
             question varchar(250) NOT NULL,
             type varchar(5) DEFAULT 'N',
-            pit varchar(10) NOT NULL''
+            pit varchar(10) NOT NULL
         )""")
 
     # B- binarna odpowiedź
